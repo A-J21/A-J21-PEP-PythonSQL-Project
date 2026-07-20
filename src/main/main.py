@@ -30,10 +30,10 @@ def main():
     )''')
 
     # You will implement these methods below. They just print TO-DO messages for now.
-    load_and_clean_users('/home/ubuntu/A-J21-PEP-PythonSQL-Project/resources/users.csv')
-    load_and_clean_call_logs('/home/ubuntu/A-J21-PEP-PythonSQL-Project/resources/callLogs.csv')
-    write_user_analytics('../../resources/userAnalytics.csv')
-    write_ordered_calls('../../resources/orderedCalls.csv')
+    load_and_clean_users('resources/users.csv')
+    load_and_clean_call_logs('resources/callLogs.csv')
+    write_user_analytics('resources/userAnalytics.csv')
+    write_ordered_calls('resources/orderedCalls.csv')
 
     # Helper method that prints the contents of the users and callLogs tables. Uncomment to see data.
     # select_from_users_and_call_logs()
@@ -83,7 +83,6 @@ def load_and_clean_call_logs(file_path):
 # You must save records consisting of each userId, avgDuration, and numCalls
 # example: 1,105.0,4 - where 1 is the userId, 105.0 is the avgDuration, and 4 is the numCalls.
 def write_user_analytics(csv_file_path):
-def write_user_analytics(csv_file_path):
     with open(csv_file_path, "w") as file:
         userAvg={}
         userCTotal ={}
@@ -92,11 +91,10 @@ def write_user_analytics(csv_file_path):
         for start,end,idname in result_one:
             totalTime = end - start
             if idname not in userAvg:
-                userAvg[idname] = {"time": 0}
-                userAvg[idname] = {"cTotal": 0}
+                userAvg[idname] = {"time": 0, "cTotal": 0}
             userAvg[idname]["time"] += totalTime
             userAvg[idname]["cTotal"] += 1
-
+    
     print(userAvg)
 
 

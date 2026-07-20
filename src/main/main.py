@@ -85,7 +85,6 @@ def load_and_clean_call_logs(file_path):
 def write_user_analytics(csv_file_path):
     with open(csv_file_path, "w") as file:
         userAvg={}
-        userCTotal ={}
         cursor.execute("SELECT startTime,endTime,userId FROM callLogs")
         result_one = cursor.fetchall()
         for start,end,idname in result_one:
@@ -94,8 +93,9 @@ def write_user_analytics(csv_file_path):
                 userAvg[idname] = {"time": 0, "cTotal": 0}
             userAvg[idname]["time"] += totalTime
             userAvg[idname]["cTotal"] += 1
-    
-    print(userAvg)
+        for id in userAvg.items():
+            avg = userAvg[idname]["time"]/userAvg[idname]["cTotal"]
+            file.write(f"{idname},{avg},{"cTotal"}\n")
 
 
 

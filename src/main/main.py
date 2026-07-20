@@ -31,7 +31,7 @@ def main():
 
     # You will implement these methods below. They just print TO-DO messages for now.
     load_and_clean_users('/home/ubuntu/A-J21-PEP-PythonSQL-Project/resources/users.csv')
-    load_and_clean_call_logs('../../resources/callLogs.csv')
+    load_and_clean_call_logs('/home/ubuntu/A-J21-PEP-PythonSQL-Project/resources/callLogs.csv')
     write_user_analytics('../../resources/userAnalytics.csv')
     write_ordered_calls('../../resources/orderedCalls.csv')
 
@@ -66,8 +66,17 @@ def load_and_clean_users(file_path):
 
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
-
-    print("TODO: load_call_logs")
+    with open(file_path, "r+") as my_file:
+            next(my_file)
+            for line in my_file:
+                splitCont = line.split(",")
+                spCount = len(splitCont) -1
+                if (spCount >4):
+                    continue
+                elif "" in [item.strip() for item in splitCont]:
+                    continue
+                insert_records = "INSERT INTO callLogs (phoneNumber,startTime,endTime,direction,userId) VALUES(?,?,?,?,?)"
+                cursor.execute(insert_records, splitCont)
 
 
 # This function will write analytics data to testUserAnalytics.csv - average call time, and number of calls per user.

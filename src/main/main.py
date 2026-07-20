@@ -93,10 +93,10 @@ def write_user_analytics(csv_file_path):
                 userAvg[idname] = {"time": 0, "cTotal": 0}
             userAvg[idname]["time"] += totalTime
             userAvg[idname]["cTotal"] += 1
-        for id,track in userAvg.items():
+        for ids,track in userAvg.items():
             avg = userAvg[idname]["time"]/userAvg[idname]["cTotal"]
             callTotal = track["cTotal"]
-            file.write(f"{idname},{avg},{callTotal}\n")
+            file.write(f"{ids},{avg},{callTotal}\n")
 
 
 

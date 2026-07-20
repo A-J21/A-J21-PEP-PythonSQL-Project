@@ -109,7 +109,7 @@ def write_ordered_calls(csv_file_path):
         result_all = cursor.fetchall()
         for items in result_all:
             strResult = ','.join(map(str, items))
-            file.write(strResult)
+            file.write(strResult+"\n")
 
 
 

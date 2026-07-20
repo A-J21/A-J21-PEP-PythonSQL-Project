@@ -51,8 +51,12 @@ def load_and_clean_users(file_path):
     with open(file_path, "r+") as my_file:
         for line in my_file:
             splitCont = line.split(",")
+            firstName = splitCont[0].strip()
+            lastName = splitCont[1].strip()
             spCount = len(splitCont) -1
             if (spCount >1):
+                continue
+            elif(firstName == "" or lastName == ""):
                 continue
             insert_records = "INSERT INTO users (firstName, lastName) VALUES(?, ?)"
             cursor.execute(insert_records, splitCont)

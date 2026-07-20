@@ -106,9 +106,10 @@ def write_user_analytics(csv_file_path):
 def write_ordered_calls(csv_file_path):
     with open(csv_file_path, "w") as file:
         cursor.execute("SELECT * from calllogs ORDER BY userID,startTime")
-        result_all = cursor.fetchone()
-        file.write(result_all)
-    print("TODO: write_ordered_calls")
+        result_all = cursor.fetchall()
+        for items in result_all:
+            strResult = ','.join(map(str, items))
+            file.write(strResult)
 
 
 
